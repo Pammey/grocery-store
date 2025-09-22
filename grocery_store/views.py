@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from.models import Product, Category
 
 def home(request):
     return HttpResponse("Hello, this is my new app!")
@@ -14,6 +15,9 @@ def about(request):
 def contact(request):
     return render(request, 'contact.html')
 def shop(request):
-    return render(request, 'shop.html')
-def product_detail(request):
-    return render(request, 'product_details.html')
+    categories = Category.objects.all()
+    products = Product.objects.all()
+    return render(request, 'shop.html', {'categories': categories, 'products': products})
+def product_detail(request, slug):
+    product = Product.objects.get(slug=slug)
+    return render(request, 'product_details.html', {'product': product})
