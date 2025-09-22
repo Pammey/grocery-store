@@ -15,3 +15,5 @@ def contact(request):
     return render(request, 'contact.html')
 def shop(request):
     return render(request, 'shop.html')
+def product_detail(request):
+    return render(request, 'product_details.html')
