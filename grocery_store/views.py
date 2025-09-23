@@ -17,6 +17,7 @@ def contact(request):
 def shop(request):
     categories = Category.objects.all()
     products = Product.objects.all()
+    
     return render(request, 'shop.html', {'categories': categories, 'products': products})
 def product_detail(request, slug):
     product = Product.objects.get(slug=slug)
