@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Checkout - FreshDirect{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">Checkout</h1>
+    <div class="row g-5">
+        <div class="col-md-7">
+            <h4>Shipping Address</h4>
+            <div class="card">
+                <div class="card-body">
+                    <form action="." method="post" class="needs-validation">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label for="{{ form.first_name.id_for_label }}" class="form-label">{{ form.first_name.label }}</label>
+                                {{ form.first_name }}
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="{{ form.last_name.id_for_label }}" class="form-label">{{ form.last_name.label }}</label>
+                                {{ form.last_name }}
+                            </div>
+
+                            <div class="col-12">
+                                <label for="{{ form.email.id_for_label }}" class="form-label">{{ form.email.label }}</label>
+                                {{ form.email }}
+                            </div>
+
+                            <div class="col-12">
+                                <label for="{{ form.phone_number.id_for_label }}" class="form-label">{{ form.phone_number.label }}</label>
+                                {{ form.phone_number }}
+                            </div>
+
+                            <div class="col-12">
+                                <label for="{{ form.address.id_for_label }}" class="form-label">{{ form.address.label }}</label>
+                                {{ form.address }}
+                            </div>
+
+                             <div class="col-md-6">
+                                <label for="{{ form.city.id_for_label }}" class="form-label">{{ form.city.label }}</label>
+                                {{ form.city }}
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="{{ form.state.id_for_label }}" class="form-label">{{ form.state.label }}</label>
+                                {{ form.state }}
+                            </div>
+                        </div>
+
+                        {% if form.errors %}
+                            <div class="alert alert-danger mt-3">
+                                Please correct the errors below.
+                            </div>
+                        {% endif %}
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">Place Order (Pay on Delivery)</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <h4>Your Order</h4>
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    {% for item in cart %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                {{ item.quantity }}x {{ item.product.name }}
+                            </div>
+                            <span>₦{{ item.total_price|floatformat:2 }}</span>
+                        </li>
+                    {% endfor %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center fw-bold">
+                        <span>Total</span>
+                        <span style="color: var(--primary-color);">₦{{ cart.get_total_price|floatformat:2 }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

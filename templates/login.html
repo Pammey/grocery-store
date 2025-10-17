@@ -1,0 +1,42 @@
+{% extends "base_account.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block branding_title %}Welcome Back!{% endblock %}
+{% block branding_subtitle %}Login to continue your shopping and access your account details.{% endblock %}
+
+{% block form_content %}
+    <h3 class="text-center mb-1">Login to Your Account</h3>
+    <p class="text-center text-muted mb-4">Let's get you signed in.</p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                Invalid username or password. Please try again.
+            </div>
+        {% endif %}
+
+        <div class="form-floating mb-3">
+            <input type="text" name="username" class="form-control" id="id_username" placeholder="Username" required>
+            <label for="id_username">Username</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" name="password" class="form-control" id="id_password" placeholder="Password" required>
+            <label for="id_password">Password</label>
+        </div>
+        
+        <div class="d-flex justify-content-end align-items-center mb-3">
+            <a href="#" class="text-decoration-none" style="color: var(--primary-color);">Forgot Password?</a>
+        </div>
+
+        <div class="d-grid">
+            <button class="btn btn-primary" type="submit">Login</button>
+        </div>
+    </form>
+    
+    <div class="text-center mt-4">
+        <p class="text-muted">Don't have an account? <a href="{% url 'signup' %}" class="text-decoration-none fw-bold" style="color: var(--primary-color);">Sign Up</a></p>
+    </div>
+{% endblock %}

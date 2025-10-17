@@ -3,18 +3,19 @@
 {% block content %}
     <main>
 
-        <section class="page-header">
-            <div class="container">
+        <section class="page-header" style=" background-color: var(--primary-color);">
+            <!-- <div class="color" style="background-color: green;"></div> -->
+            <div class="container " style="padding: 15px;">
                 <h1 class="display-4">Our Story</h1>
                 <p class="lead">Bringing farm-fresh goodness to your table.</p>
-            </div>
+            </div> 
         </section>
 
         <section class="py-5 story-section">
             <div class="container">
                 <div class="row align-items-center g-5">
                     <div class="col-lg-6">
-                        <img src="https://images.unsplash.com/photo-1543083477-4f785aeafb96?q=80&w=1974&auto=format&fit=crop" class="img-fluid" alt="Fresh vegetables in a basket">
+                        <img src="https://static.vecteezy.com/system/resources/previews/029/628/419/non_2x/studio-shot-of-various-fruits-and-vegetables-isolated-on-black-background-top-view-high-resolution-products-free-photo.jpeg" class="img-fluid" alt="Fresh vegetables in a basket" height="500px">
                     </div>
                     <div class="col-lg-6">
                         <h2 class="section-title">Welcome to FreshDirect</h2>
@@ -57,27 +58,27 @@
                 <div class="row g-4 justify-content-center">
                     <div class="col-md-6 col-lg-3">
                         <div class="card team-member-card p-3">
-                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" alt="Team Member 1">
+                            <img src="/static/assets/EFDN5847.JPG" alt="Team Member 1">
                             <div class="card-body">
-                                <h5 class="member-name">Adekunle Adebayo</h5>
+                                <h5 class="member-name">Abimbola Jegede</h5>
                                 <p class="member-title">Founder & CEO</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="card team-member-card p-3">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop" alt="Team Member 2">
+                            <img src="/static/assets/OOZX7590.JPG" alt="Team Member 2" height="-100px">
                              <div class="card-body">
-                                <h5 class="member-name">Chiamaka Nwosu</h5>
+                                <h5 class="member-name">Rachael Jegede</h5>
                                 <p class="member-title">Head of Operations</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="card team-member-card p-3">
-                            <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop" alt="Team Member 3">
+                            <img src="/static/assets/WhatsApp Image 2025-05-15 at 17.04.28.jpeg" alt="Team Member 3">
                              <div class="card-body">
-                                <h5 class="member-name">Bello Ibrahim</h5>
+                                <h5 class="member-name">Pamilerin Jegede</h5>
                                 <p class="member-title">Farmer Partnerships Lead</p>
                             </div>
                         </div>
@@ -90,7 +91,7 @@
             <div class="container">
                 <h2 class="fw-bold">Ready to Taste the Difference?</h2>
                 <p class="lead mb-4">Explore our wide range of fresh produce and pantry staples.</p>
-                <a href="#" class="btn btn-light btn-lg">Start Shopping Now</a>
+                <a href="{% url 'shop' %}" class="btn btn-light btn-lg">Start Shopping Now</a>
             </div>
         </section>
 

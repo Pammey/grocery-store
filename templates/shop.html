@@ -2,11 +2,13 @@
 {% block content %}
 
     <main style="padding-top: 56px;">
+        <div class="color" style=" background-color: var(--primary-color);">
         <div class="page-header">
             <div class="container">
                 <h1>Our Fresh Products</h1>
                 <p>Find the best quality groceries, right here.</p>
             </div>
+         </div>
         </div>
 
         <div class="container py-5">
@@ -46,7 +48,12 @@
                                     <p class="card-text text-muted small">per {{ product.unit }}</p>
                                     <div class="mt-auto">
                                         <p class="product-price mb-2">₦{{ product.price }} <span class="product-old-price">₦{{ product.sale_price }}</span></p>
-                                        <div class="d-grid"><a href="#" class="btn btn-add-to-cart"><i class="bi bi-cart-plus me-2"></i>Add to Cart</a></div>
+                                        <div class="d-grid"><form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                        {% csrf_token %}
+                                        <!-- This form could be simplified or expanded. For a shop page, a default quantity of 1 is fine. -->
+                                        <input type="hidden" name="quantity" value="1">
+                                        <button type="submit" class="btn btn-add-to-cart"><i class="bi bi-cart-plus me-2"></i>Add to Cart</button>
+                                    </form></div>
                                     </div>
                                 </div>
                             </div>

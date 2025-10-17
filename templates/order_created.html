@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Thank You - FreshDirect{% endblock %}
+
+{% block content %}
+<div class="container py-5 text-center">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <i class="bi bi-check-circle-fill" style="font-size: 5rem; color: var(--primary-color);"></i>
+            <h1 class="mt-4">Thank You For Your Order!</h1>
+            {% if order %}
+                <p class="lead text-muted">Your order has been successfully placed. Your order number is <strong>#{{ order.id }}</strong>.</p>
+                <p>We have sent an order confirmation to your email address at <strong>{{ order.email }}</strong>. We will contact you shortly regarding delivery.</p>
+            {% else %}
+                <p class="lead text-muted">Your order has been successfully placed.</p>
+            {% endif %}
+            <a href="{% url 'shop' %}" class="btn btn-primary mt-3">Continue Shopping</a> </div>
+    </div>
+</div>
+{% endblock %}
