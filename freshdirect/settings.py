@@ -97,8 +97,8 @@ USE_TZ = True
 # --- Static & Media Files ---
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # ✅ for deployment
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # ✅ WhiteNoise
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # ✅ use Path object instead of os.path
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
