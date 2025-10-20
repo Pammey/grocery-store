@@ -138,5 +138,8 @@ LOGOUT_REDIRECT_URL = '/'
 CART_SESSION_ID = 'cart'
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
