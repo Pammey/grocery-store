@@ -5,244 +5,282 @@
 {% block title %}{{ product.name }} - FreshDirect{% endblock %}
 
 {% block content %}
-    <main class="py-5" style="padding-top: 100px;"> 
-        <div class="container">
-            <nav aria-label="breadcrumb" class="mb-4">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{% url 'shop' %}">Shop</a></li>
-                    <li class="breadcrumb-item"><a href="{% url 'shop' %}?category=vegetables">Vegetables</a></li> {# Example: link to category #}
-                    <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
-                </ol>
-            </nav>
+<main class="py-5" style="padding-top: 100px;">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'shop' %}">Shop</a></li>
+                {% if product.category %}
+                <li class="breadcrumb-item">
+                    <a href="{% url 'shop' %}?category={{ product.category.slug }}">
+                        {{ product.category.name }}
+                    </a>
+                </li>
+                {% endif %}
 
-            <div class="row g-5">
-                <div class="col-lg-6 product-gallery">
-                    <div class="main-image mb-3">
-                      {% if product.image %}  
-                     <img src="{{ product.image.url }}" alt="{{ product.name }} - Main" class="img-fluid">
-                        {% else %}
-                    <div class="d-flex align-items-center justify-content-center bg-light"
-                        style="height: 400px;">
-                      <span class="text-muted">No image available</span>
-                     </div>
+                <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+            </ol>
+        </nav>
+
+        <div class="row g-5">
+            <div class="col-lg-6 product-gallery">
+                <div class="main-image mb-3">
+                    {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }} - Main" class="img-fluid">
+                    {% else %}
+                    <div class="d-flex align-items-center justify-content-center bg-light" style="height: 400px;">
+                        <span class="text-muted">No image available</span>
+                    </div>
                     {% endif %}
-                 </div>
+                </div>
 
-                      {% if product.image %}
-                  <div class="thumbnail-images d-flex gap-2">
+                {% if product.image %}
+                <div class="thumbnail-images d-flex gap-2">
 
-                      <img src="{{ product.image.url }}"
-                          alt="{{ product.name }} thumbnail 1"
-                               class="img-fluid w-25 active">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }} thumbnail 1"
+                        class="img-fluid w-25 active">
 
-                        <img src="{{ product.image.url }}"
-                         alt="{{ product.name }} thumbnail 2"
-                         class="img-fluid w-25">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }} thumbnail 2" class="img-fluid w-25">
 
-                      <img src="{{ product.image.url }}"
-                        alt="{{ product.name }} thumbnail 3"
-                         class="img-fluid w-25">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }} thumbnail 3" class="img-fluid w-25">
 
-                 </div>
-                          {% endif %}
-              </div>
+                </div>
+                {% endif %}
+            </div>
 
-                <div class="col-lg-6 product-info">
-                    <h1 class="display-5 fw-bold">{{ product.name }}</h1>
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="rating-stars">
-                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
-                        </div>
-                        <a href="#reviews-tab" class="ms-2 text-muted">No Reviews yet</a>
+            <div class="col-lg-6 product-info">
+                <h1 class="display-5 fw-bold">{{ product.name }}</h1>
+                <div class="d-flex align-items-center mb-3">
+                    <div class="rating-stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                            class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
                     </div>
-                    
-                    <p class="product-price-details mb-3">
-                        ₦{{product.price | intcomma}}<span class="product-old-price-details">₦1,500.00</span>
-                    </p>
+                    <a href="#reviews-tab" class="ms-2 text-muted">No Reviews yet</a>
+                </div>
 
-                    <p class="lead text-muted">{% if product.description %}
-                                            {{ product.description }}
-                                        {% else %}
-                                            No description available.
-                                        {% endif %} Our {{ product.name }} is sourced from trusted local farms, ensuring the highest quality and taste for your family's meals.</p>
-                    
-                    <div class="d-flex align-items-center mb-4">
-                                <span class="badge bg-success-subtle text-success-emphasis rounded-pill me-3">{% if product.stock > 0 %}
-        <span class="badge bg-success">In Stock</span>
-        {% else %}
-        <span class="badge bg-danger">Out of Stock</span>
-        {% endif %}</span>
-                        <span class="text-muted small">{{ product.unit }}</span>
-                    </div>
+                <p class="product-price-details mb-3">
+                    ₦{{ product.get_display_price|intcomma }}
 
-                    <div class="d-flex align-items-center mb-4">
-                        <label for="quantity" class="form-label me-3 mb-0 fw-bold">Quantity:</label>
-                        <div class="input-group quantity-selector" style="width: 140px;">
-                            <button class="btn btn-outline-secondary" type="button" id="button-minus">-</button>
-                            <input type="text" id="quantity" class="form-control" value="1" readonly>
-                            <button class="btn btn-outline-secondary" type="button" id="button-plus">+</button>
-                        </div>
+                    {% if product.is_on_sale %}
+                    <span class="product-old-price-details">
+                        ₦{{ product.price|intcomma }}
+                    </span>
+                    {% endif %}
+                </p>
+
+                <p class="lead text-muted">{% if product.description %}
+                    {{ product.description }}
+                    {% else %}
+                    No description available.
+                    {% endif %} Our {{ product.name }} is sourced from trusted local farms, ensuring the highest quality
+                    and taste for your family's meals.</p>
+
+                <div class="d-flex align-items-center mb-4">
+                    {% if product.stock > 0 %}
+                    <span class="badge bg-success-subtle text-success-emphasis rounded-pill me-3">
+                        In Stock
+                    </span>
+                    {% else %}
+                    <span class="badge bg-danger-subtle text-danger-emphasis rounded-pill me-3">
+                        Out of Stock
+                    </span>
+                    {% endif %}
+
+                    {% if product.unit %}
+                    <span class="text-muted small">per {{ product.unit }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="d-flex align-items-center mb-4">
+                    <label for="quantity" class="form-label me-3 mb-0 fw-bold">Quantity:</label>
+                    <div class="input-group quantity-selector" style="width: 140px;">
+                        <button class="btn btn-outline-secondary" type="button" id="button-minus">-</button>
+                        <input type="text" id="quantity" class="form-control" value="1" readonly>
+                        <button class="btn btn-outline-secondary" type="button" id="button-plus">+</button>
                     </div>
-                    
-                    <div class="d-grid gap-2 d-md-flex">
-                        <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                                        {% csrf_token %}
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex">
+                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                        {% csrf_token %}
                         <input type="hidden" name="quantity" value="1">
-                        <button type="submit" class="btn btn-add-to-cart btn-primary btn-lg flex-grow-1"><i class="bi bi-cart-plus-fill me-2 "></i>Add to Cart</button>
+                        <button type="submit" class="btn btn-add-to-cart btn-primary btn-lg flex-grow-1"><i
+                                class="bi bi-cart-plus-fill me-2 "></i>Add to Cart</button>
                         <!-- <button class="btn btn-outline-danger btn-lg" type="button" title="Add to Wishlist"><i class="bi bi-heart-fill"></i></button> -->
-                    </div>
+                </div>
 
-                    <hr class="my-4">
+                <hr class="my-4">
 
-                    <div class="product-meta">
-                        <p><strong>SKU:</strong> <span>VEG-00124</span></p>
-                        <p><strong>Category:</strong> <a href="#">Vegetables</a></p>
-                    </div>
+                <div class="product-meta">
+                    <p>
+                        <strong>Category:</strong>
+                        <a href="{% url 'shop' %}?category={{ product.category.slug }}">
+                            {{ product.category.name }}
+                        </a>
+                    </p>
                 </div>
             </div>
+        </div>
 
-            <div class="mt-5">
-                <ul class="nav nav-tabs" id="productDetailsTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description-tab-pane" type="button" role="tab">Description</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="nutrition-tab" data-bs-toggle="tab" data-bs-target="#nutrition-tab-pane" type="button" role="tab">Nutritional Info</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-tab-pane" type="button" role="tab">Reviews (12)</button>
-                    </li>
-                </ul>
-                <div class="tab-content pt-4" id="productDetailsTabContent">
-                    <div class="tab-pane fade show active" id="description-tab-pane" role="tabpanel">
-                        <p>Our {{ product.name }} is grown with care by our partner farmers in Jos, Plateau State, known for its ideal climate. Harvested at peak freshness, this versatile vegetable is perfect for steaming, roasting, or adding to your favorite stir-fry. It's free from synthetic pesticides and fertilizers, making it a healthy and safe choice for you and your loved ones. Each head is hand-selected to meet our strict quality standards.</p>
-                    </div>
-                    <div class="tab-pane fade" id="nutrition-tab-pane" role="tabpanel">
-                        <table class="table table-striped">
-                            <thead><tr><th>Nutrient</th><th>Amount per 100g</th></tr></thead>
-                            <tbody>
-                                <tr><td>Calories</td><td>34 kcal</td></tr>
-                                <tr><td>Protein</td><td>2.8 g</td></tr>
-                                <tr><td>Carbohydrates</td><td>7 g</td></tr>
-                                <tr><td>Fiber</td><td>2.6 g</td></tr>
-                                <tr><td>Vitamin C</td><td>148% DV</td></tr>
-                                <tr><td>Vitamin K</td><td>127% DV</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel">
-                        <div class="mb-4">
-                            <div class="review pb-3 mb-3">
-                                <div class="d-flex justify-content-between">
-                                    <span class="review-author">Aisha Bello</span>
-                                    <span class="review-date">Sep 20, 2025</span>
-                                </div>
-                                <div class="rating-stars my-1"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                                <p>Incredibly fresh! The best broccoli I've had in Lagos. Will definitely be ordering again.</p>
+        <div class="mt-5">
+            <ul class="nav nav-tabs" id="productDetailsTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="description-tab" data-bs-toggle="tab"
+                        data-bs-target="#description-tab-pane" type="button" role="tab">Description</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="nutrition-tab" data-bs-toggle="tab"
+                        data-bs-target="#nutrition-tab-pane" type="button" role="tab">Nutritional Info</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-tab-pane"
+                        type="button" role="tab">Reviews</button>
+                </li>
+            </ul>
+            <div class="tab-content pt-4" id="productDetailsTabContent">
+                <div class="tab-pane fade show active" id="description-tab-pane" role="tabpanel">
+                    {% if product.description %}
+                    <p>{{ product.description }}</p>
+                    {% else %}
+                    <p class="text-muted">No description available for this product.</p>
+                    {% endif %}
+                </div>
+                <div class="tab-pane fade" id="nutrition-tab-pane" role="tabpanel">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nutrient</th>
+                                <th>Amount per 100g</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Calories</td>
+                                <td>34 kcal</td>
+                            </tr>
+                            <tr>
+                                <td>Protein</td>
+                                <td>2.8 g</td>
+                            </tr>
+                            <tr>
+                                <td>Carbohydrates</td>
+                                <td>7 g</td>
+                            </tr>
+                            <tr>
+                                <td>Fiber</td>
+                                <td>2.6 g</td>
+                            </tr>
+                            <tr>
+                                <td>Vitamin C</td>
+                                <td>148% DV</td>
+                            </tr>
+                            <tr>
+                                <td>Vitamin K</td>
+                                <td>127% DV</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel">
+                    <div class="mb-4">
+                        <div class="review pb-3 mb-3">
+                            <div class="d-flex justify-content-between">
+                                <span class="review-author">Aisha Bello</span>
+                                <span class="review-date">Sep 20, 2025</span>
                             </div>
-                            <div class="review pb-3 mb-3">
-                                <div class="d-flex justify-content-between">
-                                    <span class="review-author">David Okon</span>
-                                    <span class="review-date">Sep 18, 2025</span>
-                                </div>
-                                <div class="rating-stars my-1"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
-                                <p>Very good quality, arrived crisp and green. Great for my weekly meal prep.</p>
-                            </div>
+                            <div class="rating-stars my-1"><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p>Incredibly fresh! The best broccoli I've had in Lagos. Will definitely be ordering again.
+                            </p>
                         </div>
-                        <h4 class="mb-3">Leave a Review</h4>
-                        <form>
-                            <div class="mb-3">
-                                <label for="reviewName" class="form-label">Your Name</label>
-                                <input type="text" class="form-control" id="reviewName" required>
+                        <div class="review pb-3 mb-3">
+                            <div class="d-flex justify-content-between">
+                                <span class="review-author">David Okon</span>
+                                <span class="review-date">Sep 18, 2025</span>
                             </div>
-                             <div class="mb-3">
-                                <label class="form-label">Your Rating</label>
-                                <div class="rating-stars fs-4"><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="reviewText" class="form-label">Your Review</label>
-                                <textarea class="form-control" id="reviewText" rows="3" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit Review</button>
-                        </form>
+                            <div class="rating-stars my-1"><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
+                            <p>Very good quality, arrived crisp and green. Great for my weekly meal prep.</p>
+                        </div>
                     </div>
+                    <h4 class="mb-3">Leave a Review</h4>
+                    <form>
+                        <div class="mb-3">
+                            <label for="reviewName" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="reviewName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Your Rating</label>
+                            <div class="rating-stars fs-4"><i class="bi bi-star"></i><i class="bi bi-star"></i><i
+                                    class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reviewText" class="form-label">Your Review</label>
+                            <textarea class="form-control" id="reviewText" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                    </form>
                 </div>
             </div>
-             
-            <div class="mt-5 pt-5 border-top">
-                <h2 class="text-center section-title mb-4">Related Products</h2> {# Added mb-4 for spacing #}
-                <div class="row g-4 mt-3">
-                 {% for item in related_products %}
-                    <div class="col-md-6 col-lg-3">
-                        <div class="card product-card h-100">
-                            {% if item.image %}
-                         <img src="{{ item.image.url }}" class="card-img-top product-img" alt="{{ item.name }}">
-                           {% else %}
+        </div>
+
+        <div class="mt-5 pt-5 border-top">
+            <h2 class="text-center section-title mb-4">Related Products</h2> {# Added mb-4 for spacing #}
+            <div class="row g-4 mt-3">
+                {% for item in related_products %}
+                <div class="col-md-6 col-lg-3">
+                    <div class="card product-card h-100">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" class="card-img-top product-img" alt="{{ item.name }}">
+                        {% else %}
                         <div class="card-img-top product-img d-flex align-items-center justify-content-center bg-light">
-                       <span class="text-muted">No image</span>
-                           </div>
-                          {% endif %}
-                            <div class="card-body text-center d-flex flex-column">
-                                <h5 class="product-title">{{ item.name }}</h5>
-                                <p class="product-price mt-auto"> 
-                                    {% load humanize %}
+                            <span class="text-muted">No image</span>
+                        </div>
+                        {% endif %}
+                        <div class="card-body text-center d-flex flex-column">
+                            <h5 class="product-title">{{ item.name }}</h5>
+                            <p class="product-price mt-auto">
+                                {% load humanize %}
                                 ₦{{ item.get_display_price|intcomma }}</p>
-                                <a href="{{ item.get_absolute_url }}" class="btn btn-sm btn-add-to-cart mt-2">View Product</a>
-                            </div>
+                            <a href="{{ item.get_absolute_url }}" class="btn btn-sm btn-add-to-cart mt-2">View
+                                Product</a>
                         </div>
                     </div>
-                    {% empty %}
+                </div>
+                {% empty %}
 
                 <div class="col-12 text-center">
 
-                 <p>No related products found.</p>
-                 </div>
-                 {% endfor %}
+                    <p>No related products found.</p>
+                </div>
+                {% endfor %}
 
-                 <nav class="mt-5">
-    <ul class="pagination justify-content-center">
-
-        {% if page_obj.has_previous %}
-        <li class="page-item">
-            <a class="page-link"
-               href="?page={{ page_obj.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}">
-                Previous
-            </a>
-        </li>
-        {% endif %}
-
-        {% for page in page_obj.paginator.page_range %}
-            <li class="page-item {% if page == page_obj.number %}active{% endif %}">
-                <a class="page-link"
-                   href="?page={{ page }}{% if search_query %}&search={{ search_query }}{% endif %}">
-                    {{ page }}
-                </a>
-            </li>
-        {% endfor %}
             </div>
         </div>
-    </main>
+</main>
 {% endblock %}
 
 {% block extra_js %}
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const minusButton = document.getElementById('button-minus');
-            const plusButton = document.getElementById('button-plus');
-            const quantityInput = document.getElementById('quantity');
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const minusButton = document.getElementById('button-minus');
+        const plusButton = document.getElementById('button-plus');
+        const quantityInput = document.getElementById('quantity');
 
-            minusButton.addEventListener('click', function() {
-                let currentValue = parseInt(quantityInput.value, 10);
-                if (currentValue > 1) {
-                    quantityInput.value = currentValue - 1;
-                }
-            });
-
-            plusButton.addEventListener('click', function() {
-                let currentValue = parseInt(quantityInput.value, 10);
-                quantityInput.value = currentValue + 1;
-            });
+        minusButton.addEventListener('click', function () {
+            let currentValue = parseInt(quantityInput.value, 10);
+            if (currentValue > 1) {
+                quantityInput.value = currentValue - 1;
+            }
         });
-    </script>
+
+        plusButton.addEventListener('click', function () {
+            let currentValue = parseInt(quantityInput.value, 10);
+            quantityInput.value = currentValue + 1;
+        });
+    });
+</script>
 {% endblock %}
