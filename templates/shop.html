@@ -1,66 +1,221 @@
 {% extends "base.html" %}
+{% load humanize static %}
 {% block content %}
 
-    <main style="padding-top: 56px;">
-        <div class="color" style=" background-color: var(--primary-color);">
+<main style="padding-top: 56px;">
+    <div class="color" style=" background-color: var(--primary-color);">
         <div class="page-header">
             <div class="container">
                 <h1>Our Fresh Products</h1>
                 <p>Find the best quality groceries, right here.</p>
             </div>
-         </div>
         </div>
+    </div>
 
-        <div class="container py-5">
-            <div class="row">
+    <div class="container py-5">
+        <div class="row">
 
-                <aside class="col-lg-3">
-                    <div class="filter-sidebar">
-                        <h5>Categories</h5>
-                        <ul class="list-group list-group-flush">
-                            <a href="#" class="list-group-item active">All Products</a>
-                            <a href="#" class="list-group-item">Fresh Vegetables</a>
-                            <a href="#" class="list-group-item">Fruits</a>
-                            <a href="#" class="list-group-item">Dairy & Eggs</a>
-                            <a href="#" class="list-group-item">Bakery</a>
-                            <a href="#" class="list-group-item">Meat & Seafood</a>
-                        </ul>
+            <aside class="col-lg-3">
+                <div class="filter-sidebar">
+                    <h5>Categories</h5>
 
-                        <h5 class="mt-4">Filter by Price</h5>
-                        <label for="priceRange" class="form-label">Price: ₦100 - ₦5000</label>
-                        <input type="range" class="form-range" min="100" max="5000" id="priceRange">
-                    </div>
-                </aside>
+                    <ul class="list-group list-group-flush">
 
-                <div class="col-lg-9">
-                    <div class="row g-4">
-                        {% for product in products %}
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card product-card h-100">
-                                <span class="badge bg-danger product-badge">Sale</span>
-                                <a href="#" class="wishlist-btn"><i class="bi bi-heart"></i></a>
-                                <img src="{% if product.image %}{{ product.image.url }}{% else %}https://via.placeholder.com/150{% endif %}" class="card-img-top product-img" alt="{{ product.name }}">
-                                <div class="card-body d-flex flex-column">
-                                    <a href="{{ product.get_absolute_url}}"><h5 class="product-title">{{ product.name }}</h5></a>
-                                    <div class="rating-stars mb-2">
-                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
-                                    </div>
-                                    <p class="card-text text-muted small">per {{ product.unit }}</p>
-                                    <div class="mt-auto">
-                                        <p class="product-price mb-2">₦{{ product.price }} <span class="product-old-price">₦{{ product.sale_price }}</span></p>
-                                        <div class="d-grid"><form action="{% url 'cart:cart_add' product.id %}" method="post">
-                                        {% csrf_token %}
-                                        <!-- This form could be simplified or expanded. For a shop page, a default quantity of 1 is fine. -->
-                                        <input type="hidden" name="quantity" value="1">
-                                        <button type="submit" class="btn btn-add-to-cart"><i class="bi bi-cart-plus me-2"></i>Add to Cart</button>
-                                    </form></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <a href="{% url 'shop' %}"
+                            class="list-group-item {% if not selected_category %}active{% endif %}">
+                            All Products
+                        </a>
+
+                        {% for category in categories %}
+
+                        <a href="{% url 'shop' %}?category={{ category.slug }}"
+                            class="list-group-item {% if selected_category == category.slug %}active{% endif %}">
+                            {{ category.name }}
+                            <span class="badge bg-secondary float-end">
+                                {{ category.products.count }}
+                            </span>
+                        </a>
+
                         {% endfor %}
 
-                        <!-- <div class="col-md-6 col-lg-4">
+                    </ul>
+
+                    <h5 class="mt-4">Filter by Price</h5>
+
+                    <form method="GET">
+
+                        {% if selected_category %}
+                        <input type="hidden" name="category" value="{{ selected_category }}">
+                        {% endif %}
+
+                        {% if search_query %}
+                        <input type="hidden" name="search" value="{{ search_query }}">
+                        {% endif %}
+
+                        {% if sort %}
+                        <input type="hidden" name="sort" value="{{ sort }}">
+                        {% endif %}
+
+                        <label class="form-label">
+                            Maximum Price:
+                            <strong>₦{{ max_price|default:"5000" }}</strong>
+                        </label>
+
+                        <input type="range" class="form-range" name="max_price" min="100" max="50000" step="100"
+                            value="{{ max_price|default:'5000' }}" onchange="this.form.submit()">
+
+                    </form>
+                </div>
+            </aside>
+            <div class="col-lg-9">
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+
+                    <h4>All Products</h4>
+
+                    <form method="GET">
+
+                        {% if selected_category %}
+                        <input type="hidden" name="category" value="{{ selected_category }}">
+                        {% endif %}
+
+                        {% if search_query %}
+                        <input type="hidden" name="search" value="{{ search_query }}">
+                        {% endif %}
+                        <select class="form-select" style="width:220px;" name="sort" onchange="this.form.submit()">
+
+                            <option value="">Newest</option>
+
+                            <option value="price_low" {% if sort=="price_low" %}selected{% endif %}>
+                                Price: Low to High
+                            </option>
+
+                            <option value="price_high" {% if sort=="price_high" %}selected{% endif %}>
+                                Price: High to Low
+                            </option>
+
+                            <option value="name" {% if sort=="name" %}selected{% endif %}>
+                                Name (A - Z)
+                            </option>
+
+                        </select>
+
+                    </form>
+
+                </div>
+
+                <div class="row g-4">
+
+                    {% for product in page_obj %}
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card product-card h-100">
+
+                            {% if product.is_on_sale %}
+                            <span class="badge bg-danger product-badge">Sale</span>
+                            {% endif %}
+
+                            <img src="{% if product.image %}{% static product.image.name %}{% else %}https://via.placeholder.com/150{% endif %}"
+                                class="card-img-top product-img" alt="{{ product.name }}">
+
+                            <div class="card-body d-flex flex-column">
+
+                                <a href="{{ product.get_absolute_url }}">
+                                    <h5 class="product-title">{{ product.name }}</h5>
+                                </a>
+
+                                <div class="rating-stars mb-2">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </div>
+
+                                <p class="card-text text-muted small">
+                                    per {{ product.unit }}
+                                </p>
+
+                                <div class="mt-auto">
+
+                                    {% if product.is_on_sale %}
+                                    <p class="product-price mb-2">
+                                        ₦{{ product.sale_price|intcomma }}
+                                        <span class="product-old-price">
+                                            ₦{{ product.price|intcomma }}
+                                        </span>
+                                    </p>
+                                    {% else %}
+                                    <p class="product-price mb-2">
+                                        ₦{{ product.price|intcomma }}
+                                    </p>
+                                    {% endif %}
+
+                                    <div class="d-grid">
+                                        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="quantity" value="1">
+
+                                            <button type="submit" class="btn btn-add-to-cart">
+                                                <i class="bi bi-cart-plus me-2"></i>
+                                                Add to Cart
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    {% empty %}
+
+                    <div class="col-12 text-center py-5">
+                        <h4>No products found.</h4>
+                        <p>Try searching with a different keyword.</p>
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+                <!-- Pagination -->
+                <nav class="mt-5">
+                    <ul class="pagination justify-content-center">
+
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link"
+                                href="?page={{ page_obj.previous_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}{% if sort %}&sort={{ sort }}{% endif %}">
+                                Previous
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {% for page in page_obj.paginator.page_range %}
+                        <li class="page-item {% if page == page_obj.number %}active{% endif %}">
+                            <a class="page-link"
+                                href="?page={{ page }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}{% if sort %}&sort={{ sort }}{% endif %}">
+                                {{ page }}
+                            </a>
+                        </li>
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link"
+                                href="?page={{ page_obj.next_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}{% if sort %}&sort={{ sort }}{% endif %}">
+                                Next
+                            </a>
+                        </li>
+                        {% endif %}
+
+                    </ul>
+                </nav>
+
+            </div>
+            <!-- <div class="col-md-6 col-lg-4">
                             <div class="card product-card h-100">
                                 <span class="badge bg-info product-badge">New</span>
                                 <a href="#" class="wishlist-btn"><i class="bi bi-heart"></i></a>
@@ -151,11 +306,10 @@
                                 </div>
                             </div>
                         </div> -->
-                    </div>
-                </div>
-
-            </div>
         </div>
-    </main>
+
+    </div>
+    </div>
+</main>
 
 {% endblock %}

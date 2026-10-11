@@ -1,0 +1,586 @@
+[
+{
+  "model": "grocery_store.category",
+  "pk": 5,
+  "fields": {
+    "name": "Grains, Tubers & Pantry",
+    "description": null,
+    "slug": "grains-tubers-pantry"
+  }
+},
+{
+  "model": "grocery_store.category",
+  "pk": 6,
+  "fields": {
+    "name": "Vegetables & Leafy Greens",
+    "description": null,
+    "slug": "vegetables-leafy-greens"
+  }
+},
+{
+  "model": "grocery_store.category",
+  "pk": 7,
+  "fields": {
+    "name": "Fruits",
+    "description": null,
+    "slug": "fruits"
+  }
+},
+{
+  "model": "grocery_store.category",
+  "pk": 8,
+  "fields": {
+    "name": "Meat & Poultry",
+    "description": null,
+    "slug": "meat-poultry"
+  }
+},
+{
+  "model": "grocery_store.category",
+  "pk": 9,
+  "fields": {
+    "name": "Fish & Seafood",
+    "description": null,
+    "slug": "fish-seafood"
+  }
+},
+{
+  "model": "grocery_store.category",
+  "pk": 10,
+  "fields": {
+    "name": "Soups & Stew Ingredients",
+    "description": null,
+    "slug": "soups-stew-ingredients"
+  }
+},
+{
+  "model": "grocery_store.category",
+  "pk": 11,
+  "fields": {
+    "name": "Dairy & Eggs",
+    "description": null,
+    "slug": "dairy-eggs"
+  }
+},
+{
+  "model": "grocery_store.category",
+  "pk": 12,
+  "fields": {
+    "name": "Bakery & Confectionery",
+    "description": null,
+    "slug": "bakery-confectionery"
+  }
+},
+{
+  "model": "grocery_store.category",
+  "pk": 13,
+  "fields": {
+    "name": "Beverages",
+    "description": null,
+    "slug": "beverages"
+  }
+},
+{
+  "model": "grocery_store.category",
+  "pk": 14,
+  "fields": {
+    "name": "Household & Cleaning",
+    "description": null,
+    "slug": "household-cleaning"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 2,
+  "fields": {
+    "name": "Tubers of Yam",
+    "description": "Large, hearty tubers of yam, perfect for pounding, boiling, or frying. Sourced from the best farms.",
+    "slug": "tubers-of-yam",
+    "price": "3500.00",
+    "sale_price": null,
+    "stock": 50,
+    "is_available": true,
+    "category": 5,
+    "image": "products/yam_MRg0cxG.jpg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.652Z",
+    "updated_at": "2025-10-02T00:17:08.868Z",
+    "unit": "Medium Tuber"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 3,
+  "fields": {
+    "name": "Ijebu Garri",
+    "description": "Fine, sour cassava flakes with a distinctive taste. Ideal for making Eba.",
+    "slug": "ijebu-garri",
+    "price": "2500.00",
+    "sale_price": null,
+    "stock": 100,
+    "is_available": true,
+    "category": 5,
+    "image": "products/garri.jpeg.jpg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.654Z",
+    "updated_at": "2025-10-02T00:16:45.861Z",
+    "unit": "2kg Bag"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 4,
+  "fields": {
+    "name": "Ofada Rice",
+    "description": "Authentic, locally grown brown rice with its signature aroma and flavour.",
+    "slug": "ofada-rice",
+    "price": "4000.00",
+    "sale_price": null,
+    "stock": 80,
+    "is_available": true,
+    "category": 5,
+    "image": "products/ofada.jpeg.jpg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.655Z",
+    "updated_at": "2025-10-02T00:16:20.454Z",
+    "unit": "1kg Bag"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 5,
+  "fields": {
+    "name": "Oloyin Beans",
+    "description": "Premium \"Honey Beans\" known for their unique sweet taste. Cooks soft and is perfect for Ewa Aganyin.",
+    "slug": "oloyin-beans",
+    "price": "3800.00",
+    "sale_price": null,
+    "stock": 120,
+    "is_available": true,
+    "category": 5,
+    "image": "products/beans.jpeg.jpg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.658Z",
+    "updated_at": "2025-10-02T00:16:08.485Z",
+    "unit": "2kg Bag"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 6,
+  "fields": {
+    "name": "Kings Vegetable Oil",
+    "description": "Cholesterol-free vegetable oil, perfect for all your cooking and frying needs.",
+    "slug": "kings-vegetable-oil",
+    "price": "9500.00",
+    "sale_price": null,
+    "stock": 40,
+    "is_available": true,
+    "category": 5,
+    "image": "products/oil.jpeg.jpg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.660Z",
+    "updated_at": "2025-10-02T00:15:43.322Z",
+    "unit": "5L Keg"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 7,
+  "fields": {
+    "name": "Knorr Seasoning Cubes",
+    "description": "A pack of essential seasoning cubes for every Nigerian kitchen.",
+    "slug": "knorr-seasoning-cubes",
+    "price": "1200.00",
+    "sale_price": null,
+    "stock": 200,
+    "is_available": true,
+    "category": 5,
+    "image": "products/knoor.jpeg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.664Z",
+    "updated_at": "2025-10-02T00:15:26.745Z",
+    "unit": "Pack of 50"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 8,
+  "fields": {
+    "name": "Ripe Tomatoes",
+    "description": "A basket of fresh, ripe red tomatoes, essential for stews, Jollof, and sauces.",
+    "slug": "ripe-tomatoes",
+    "price": "4500.00",
+    "sale_price": null,
+    "stock": 30,
+    "is_available": true,
+    "category": 6,
+    "image": "products/tomatoes.jpeg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.666Z",
+    "updated_at": "2025-10-02T00:14:13.068Z",
+    "unit": "Small Basket"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 9,
+  "fields": {
+    "name": "Atarodo (Scotch Bonnet)",
+    "description": "A handful of fiery hot Scotch Bonnet peppers (Atarodo) to add that signature Nigerian heat.",
+    "slug": "atarodo-scotch-bonnet",
+    "price": "1000.00",
+    "sale_price": null,
+    "stock": 150,
+    "is_available": true,
+    "category": 6,
+    "image": "products/rodo.jpeg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.668Z",
+    "updated_at": "2025-10-02T00:13:28.579Z",
+    "unit": "Small Pack"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 10,
+  "fields": {
+    "name": "Ugu Leaves (Pumpkin)",
+    "description": "Fresh pumpkin leaves, pre-washed and sliced for your convenience.",
+    "slug": "ugu-leaves-pumpkin",
+    "price": "800.00",
+    "sale_price": null,
+    "stock": 100,
+    "is_available": true,
+    "category": 6,
+    "image": "products/ugu.jpeg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.671Z",
+    "updated_at": "2025-10-02T00:12:10.502Z",
+    "unit": "Bunch"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 11,
+  "fields": {
+    "name": "Red Onions",
+    "description": "A bag of large, crisp red onions. A staple ingredient for flavouring almost any dish.",
+    "slug": "red-onions",
+    "price": "2000.00",
+    "sale_price": null,
+    "stock": 90,
+    "is_available": true,
+    "category": 6,
+    "image": "products/onions.jpeg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.673Z",
+    "updated_at": "2025-10-02T00:10:23.928Z",
+    "unit": "1.5kg Bag"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 12,
+  "fields": {
+    "name": "Sweet Pineapple",
+    "description": "Juicy and sweet pineapple, freshly harvested. Enjoy it as a healthy snack.",
+    "slug": "sweet-pineapple",
+    "price": "2500.00",
+    "sale_price": null,
+    "stock": 60,
+    "is_available": true,
+    "category": 7,
+    "image": "products/pineapple.jpeg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.674Z",
+    "updated_at": "2025-10-02T00:08:44.911Z",
+    "unit": "Piece"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 13,
+  "fields": {
+    "name": "Medium Watermelon",
+    "description": "A refreshing, hydrating medium-sized watermelon. Perfect for hot afternoons.",
+    "slug": "medium-watermelon",
+    "price": "4000.00",
+    "sale_price": null,
+    "stock": 25,
+    "is_available": true,
+    "category": 7,
+    "image": "products/watermelon.jpeg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.676Z",
+    "updated_at": "2025-10-02T00:08:04.472Z",
+    "unit": "Piece"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 14,
+  "fields": {
+    "name": "Ripe Plantain",
+    "description": "A bunch of sweet, ripe plantain, ready to be fried into delicious Dodo.",
+    "slug": "ripe-plantain",
+    "price": "1800.00",
+    "sale_price": null,
+    "stock": 80,
+    "is_available": true,
+    "category": 7,
+    "image": "products/plaintain.jpeg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.681Z",
+    "updated_at": "2025-10-02T00:07:33.288Z",
+    "unit": "Bunch of 4"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 15,
+  "fields": {
+    "name": "Whole Chicken (Broiler)",
+    "description": "A whole dressed chicken, cleaned and ready for roasting or cutting into pieces. Approx. 1.5kg.",
+    "slug": "whole-chicken-broiler",
+    "price": "8500.00",
+    "sale_price": null,
+    "stock": 35,
+    "is_available": true,
+    "category": 8,
+    "image": "products/chicken.jpeg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.683Z",
+    "updated_at": "2025-10-02T00:06:26.310Z",
+    "unit": "Whole Chicken"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 16,
+  "fields": {
+    "name": "Assorted Goat Meat",
+    "description": "A mix of goat meat cuts, perfect for stews, peppersoup, and traditional dishes.",
+    "slug": "assorted-goat-meat",
+    "price": "6000.00",
+    "sale_price": null,
+    "stock": 45,
+    "is_available": true,
+    "category": 8,
+    "image": "products/goat_meat.jpeg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.684Z",
+    "updated_at": "2025-10-02T00:05:39.417Z",
+    "unit": "kg"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 17,
+  "fields": {
+    "name": "Beef for Stewing",
+    "description": "Freshly cut beef with minimal fat, ideal for slow-cooking in your favourite Nigerian stews.",
+    "slug": "beef-for-stewing",
+    "price": "5500.00",
+    "sale_price": null,
+    "stock": 50,
+    "is_available": true,
+    "category": 8,
+    "image": "products/beef_for.jpeg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.686Z",
+    "updated_at": "2025-10-02T00:05:12.056Z",
+    "unit": "kg"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 18,
+  "fields": {
+    "name": "Croaker Fish (Medium)",
+    "description": "Fresh, whole croaker fish, scaled and gutted for your convenience.",
+    "slug": "croaker-fish-medium",
+    "price": "4500.00",
+    "sale_price": null,
+    "stock": 40,
+    "is_available": true,
+    "category": 9,
+    "image": "products/croaker.jpeg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.688Z",
+    "updated_at": "2025-10-02T00:04:27.148Z",
+    "unit": "Medium Fish"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 19,
+  "fields": {
+    "name": "Smoked Catfish (Eja Kika)",
+    "description": "Dried and smoked catfish that adds a deep, smoky flavour to soups and stews.",
+    "slug": "smoked-catfish-eja-kika",
+    "price": "3000.00",
+    "sale_price": null,
+    "stock": 100,
+    "is_available": true,
+    "category": 9,
+    "image": "products/smoked_catfish.jpeg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.690Z",
+    "updated_at": "2025-10-02T00:03:28.541Z",
+    "unit": "Piece"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 20,
+  "fields": {
+    "name": "Ground Crayfish",
+    "description": "A bag of ground crayfish, ready to be sprinkled into your soups for an authentic taste.",
+    "slug": "ground-crayfish",
+    "price": "2500.00",
+    "sale_price": null,
+    "stock": 120,
+    "is_available": true,
+    "category": 9,
+    "image": "products/ground_catfish.jpeg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.691Z",
+    "updated_at": "2025-10-02T00:03:19.525Z",
+    "unit": "200g Bag"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 21,
+  "fields": {
+    "name": "Egusi (Ground Melon Seeds)",
+    "description": "Finely ground melon seeds, the primary ingredient for making delicious Egusi soup.",
+    "slug": "egusi-ground-melon-seeds",
+    "price": "3000.00",
+    "sale_price": null,
+    "stock": 70,
+    "is_available": true,
+    "category": 10,
+    "image": "products/egusi.jpeg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.695Z",
+    "updated_at": "2025-10-02T00:02:25.657Z",
+    "unit": "500g Pack"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 22,
+  "fields": {
+    "name": "Ogbono (Ground)",
+    "description": "Ground African Bush Mango seeds, ready to use for making rich and flavourful Ogbono soup.",
+    "slug": "ogbono-ground",
+    "price": "3500.00",
+    "sale_price": null,
+    "stock": 65,
+    "is_available": true,
+    "category": 10,
+    "image": "products/ogbonno.jpeg.jpg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.697Z",
+    "updated_at": "2025-10-02T00:01:43.863Z",
+    "unit": "250g Pack"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 23,
+  "fields": {
+    "name": "Stockfish (Panla)",
+    "description": "Dried and de-boned Panla (Cod) stockfish, cleaned and cut into pieces for easy use in soups.",
+    "slug": "stockfish-panla",
+    "price": "4000.00",
+    "sale_price": null,
+    "stock": 55,
+    "is_available": true,
+    "category": 10,
+    "image": "products/stockfish.jpeg.jpg",
+    "is_featured": false,
+    "created_at": "2025-09-23T13:56:19.699Z",
+    "updated_at": "2025-10-02T00:01:23.963Z",
+    "unit": "250g Pack"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 24,
+  "fields": {
+    "name": "Cassava",
+    "description": "A starchy tuberous root vegetable native to South America, widely cultivated in tropical regions for its edible roots, which are a major source of carbohydrates.",
+    "slug": "cassava",
+    "price": "1500.00",
+    "sale_price": null,
+    "stock": 0,
+    "is_available": true,
+    "category": 5,
+    "image": "products/cassava_Sykmo3e.jpg",
+    "is_featured": false,
+    "created_at": "2026-07-28T14:35:11.089Z",
+    "updated_at": "2026-07-28T14:46:11.226Z",
+    "unit": "Piece"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 25,
+  "fields": {
+    "name": "Sweet Potato",
+    "description": "A starchy, sweet-tasting root vegetable from the morning glory family, valued for its edible tuberous roots and nutritional benefits.",
+    "slug": "sweet-potato",
+    "price": "1500.00",
+    "sale_price": null,
+    "stock": 0,
+    "is_available": true,
+    "category": 5,
+    "image": "products/sweetpotato_xAVfLlI.jpg",
+    "is_featured": false,
+    "created_at": "2026-07-28T14:36:07.950Z",
+    "updated_at": "2026-07-28T14:45:37.260Z",
+    "unit": "Piece"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 26,
+  "fields": {
+    "name": "Irish Potato",
+    "description": "A starchy root vegetable, Solanum tuberosum, that became a staple food in Ireland and a symbol of Irish history, culture, and resilience.",
+    "slug": "irish-potato",
+    "price": "1500.00",
+    "sale_price": null,
+    "stock": 0,
+    "is_available": true,
+    "category": 5,
+    "image": "products/irish_potato.jpg",
+    "is_featured": false,
+    "created_at": "2026-07-28T14:37:43.229Z",
+    "updated_at": "2026-07-28T14:45:08.634Z",
+    "unit": "Piece"
+  }
+},
+{
+  "model": "grocery_store.product",
+  "pk": 27,
+  "fields": {
+    "name": "Cocoyam",
+    "description": "A tropical root crop from the Arum family, cultivated for its edible underground stems and leaves.",
+    "slug": "cocoyam",
+    "price": "1500.00",
+    "sale_price": null,
+    "stock": 0,
+    "is_available": true,
+    "category": 5,
+    "image": "products/cocoyam_BOwRGqX.jpg",
+    "is_featured": false,
+    "created_at": "2026-07-28T14:38:26.422Z",
+    "updated_at": "2026-07-28T14:44:59.107Z",
+    "unit": "Piece"
+  }
+}
+]

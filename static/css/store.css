@@ -559,3 +559,24 @@ a{
     .btn-social i {
         margin-right: 0.5rem;
     }
+
+.pagination .page-link {
+    color: var(--primary-color) !important;
+    border: 1px solid var(--primary-color) !important;
+}
+
+.pagination .page-link:hover {
+    background: var(--primary-color) !important;
+    color: #fff !important;
+    border-color: var(--primary-color) !important;
+}
+
+.pagination .page-item.active .page-link {
+    background: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: #fff !important;
+}
+
+.pagination .page-link:focus {
+    box-shadow: none !important;
+}

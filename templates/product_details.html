@@ -27,7 +27,7 @@
             <div class="col-lg-6 product-gallery">
                 <div class="main-image mb-3">
                     {% if product.image %}
-                    <img src="{{ product.image.url }}" alt="{{ product.name }} - Main" class="img-fluid">
+                    <img src="{% static product.image.name %}" alt="{{ product.name }} - Main" class="img-fluid">
                     {% else %}
                     <div class="d-flex align-items-center justify-content-center bg-light" style="height: 400px;">
                         <span class="text-muted">No image available</span>
@@ -38,12 +38,14 @@
                 {% if product.image %}
                 <div class="thumbnail-images d-flex gap-2">
 
-                    <img src="{{ product.image.url }}" alt="{{ product.name }} thumbnail 1"
+                    <img src="{% static product.image.name %}" alt="{{ product.name }} thumbnail 1"
                         class="img-fluid w-25 active">
 
-                    <img src="{{ product.image.url }}" alt="{{ product.name }} thumbnail 2" class="img-fluid w-25">
+                    <img src="{% static product.image.name %}" alt="{{ product.name }} thumbnail 2"
+                        class="img-fluid w-25">
 
-                    <img src="{{ product.image.url }}" alt="{{ product.name }} thumbnail 3" class="img-fluid w-25">
+                    <img src="{% static product.image.name %}" alt="{{ product.name }} thumbnail 3"
+                        class="img-fluid w-25">
 
                 </div>
                 {% endif %}
@@ -234,7 +236,7 @@
                 <div class="col-md-6 col-lg-3">
                     <div class="card product-card h-100">
                         {% if item.image %}
-                        <img src="{{ item.image.url }}" class="card-img-top product-img" alt="{{ item.name }}">
+                        <img src="{% static item.image.name %}" class="card-img-top product-img" alt="{{ item.name }}">
                         {% else %}
                         <div class="card-img-top product-img d-flex align-items-center justify-content-center bg-light">
                             <span class="text-muted">No image</span>
