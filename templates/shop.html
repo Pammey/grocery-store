@@ -85,18 +85,18 @@
                         <select class="form-select" style="width:220px;" name="sort" onchange="this.form.submit()">
 
                             <option value="">Newest</option>
+                     <option value="price_low" {% if sort == "price_low" %}selected{% endif %}>
+                         Price: Low to High
+                     </option>
 
-                            <option value="price_low" {% if sort=="price_low"  %}selected{% endif %}>
-                                Price: Low to High
-                            </option>
+                     <option value="price_high" {% if sort == "price_high" %}selected{% endif %}>
+                         Price: High to Low
+                     </option>
 
-                            <option value="price_high" {% if sort=="price_high" %}selected{% endif %}>
-                                Price: High to Low
-                            </option>
+                     <option value="name" {% if sort == "name" %}selected{% endif %}>
+                         Name (A - Z)
+                     </option>
 
-                            <option value="name" {% if sort=="name" %}selected{% endif %}>
-                                Name (A - Z)
-                            </option>
 
                         </select>
 
