@@ -8,5 +8,6 @@ urlpatterns = [
     path('shop/', views.shop, name='shop'),
     path('product/<slug:slug>/', views.product_detail, name='product_detail'),
     path('cart/', include('cart.urls')),
-    path('orders/', include('orders.urls'))
+    path('orders/', include('orders.urls')),
+    path("subscribe/", views.subscribe, name="subscribe"),
 ]

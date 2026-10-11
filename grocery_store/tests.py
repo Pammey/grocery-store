@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from .models import Category, Product
+from .models import Category, Product, Subscriber
 
 
 class ProductModelTests(TestCase):
@@ -64,3 +64,54 @@ class ProductDetailViewTests(TestCase):
         )
 
         self.assertEqual(response.status_code, 404)
+
+class SubscriberViewTests(TestCase):
+    def test_valid_email_creates_subscriber(self):
+        response = self.client.post(
+            reverse("subscribe"),
+            {"email": "test@example.com"}
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["status"], "success")
+        self.assertTrue(
+            Subscriber.objects.filter(email="test@example.com").exists()
+        )
+
+    def test_duplicate_email_does_not_create_second_subscriber(self):
+        Subscriber.objects.create(email="test@example.com")
+
+        response = self.client.post(
+            reverse("subscribe"),
+            {"email": "test@example.com"}
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["status"], "info")
+        self.assertEqual(Subscriber.objects.count(), 1)
+
+    def test_invalid_email_is_rejected(self):
+        response = self.client.post(
+            reverse("subscribe"),
+            {"email": "not-an-email"}
+        )
+
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.json()["status"], "error")
+        self.assertEqual(Subscriber.objects.count(), 0)
+
+    def test_empty_email_is_rejected(self):
+        response = self.client.post(
+            reverse("subscribe"),
+            {"email": ""}
+        )
+
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.json()["status"], "error")
+        self.assertEqual(Subscriber.objects.count(), 0)
+
+    def test_get_request_is_not_allowed(self):
+        response = self.client.get(reverse("subscribe"))
+
+        self.assertEqual(response.status_code, 405)
+        self.assertEqual(response.json()["status"], "error")
