@@ -1,202 +1,209 @@
-
 {% extends "base.html" %}
 
 {% block content %}
 
-    <main style="padding-top: 56px;"> <section class="hero-section text-center">
-            <div class="container">
-                <h1 class="display-4">Fresh Groceries, Delivered Fast.</h1>
-                <p class="lead">The best quality from local farms, right to your doorstep.</p>
-                <a href="{% url 'shop' %}" class="btn btn-primary btn-lg">Shop Now <i class="bi bi-arrow-right-short"></i></a>
-            </div>
-        </section>
+<main style="padding-top: 56px;">
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4">Fresh Groceries, Delivered Fast.</h1>
+            <p class="lead">The best quality from local farms, right to your doorstep.</p>
+            <a href="{% url 'shop' %}" class="btn btn-primary btn-lg">Shop Now <i
+                    class="bi bi-arrow-right-short"></i></a>
+        </div>
+    </section>
 
-        <section class="py-5">
-            <div class="container text-center">
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <i class="bi bi-leaf feature-icon"></i>
-                        <h3 class="mt-3 fs-5 fw-bold">Farm-Fresh Quality</h3>
-                        <p class="text-muted">We source directly from local farmers to ensure the best quality.</p>
-                    </div>
-                    <div class="col-md-4">
-                        <i class="bi bi-truck feature-icon"></i>
-                        <h3 class="mt-3 fs-5 fw-bold">Same-Day Delivery</h3>
-                        <p class="text-muted">Get your groceries delivered to your door in hours, not days.</p>
-                    </div>
-                    <div class="col-md-4">
-                        <i class="bi bi-patch-check feature-icon"></i>
-                        <h3 class="mt-3 fs-5 fw-bold">100% Satisfaction</h3>
-                        <p class="text-muted">Not happy? We'll make it right. That's our promise to you.</p>
-                    </div>
+    <section class="py-5">
+        <div class="container text-center">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <i class="bi bi-leaf feature-icon"></i>
+                    <h3 class="mt-3 fs-5 fw-bold">Farm-Fresh Quality</h3>
+                    <p class="text-muted">We source directly from local farmers to ensure the best quality.</p>
                 </div>
-            </div>
-        </section>
-
-        <section class="py-5 bg-light">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-title">Shop by Category</h2>
-                    <p class="section-subtitle">Find what you need with our popular categories.</p>
+                <div class="col-md-4">
+                    <i class="bi bi-truck feature-icon"></i>
+                    <h3 class="mt-3 fs-5 fw-bold">Same-Day Delivery</h3>
+                    <p class="text-muted">Get your groceries delivered to your door in hours, not days.</p>
                 </div>
-                <div class="row g-4">
-                    <div class="col-md-6 col-lg-4">
-                        <a href="#" class="category-card">
-                            <img src="/static/assets/vegtables.jpg" class="card-img" alt="Vegetables">
-                            <div class="category-card-title">Vegetables</div>
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <a href="#" class="category-card">
-                            <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=80&w=1974&auto=format&fit=crop" class="card-img" alt="Fruits">
-                            <div class="category-card-title">Fruits</div>
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <a href="#" class="category-card">
-                             <img src="https://images.unsplash.com/photo-1554866585-cd94860890b7?q=80&w=1964&auto=format&fit=crop" class="card-img" alt="Dairy & Eggs">
-                            <div class="category-card-title">Dairy & Eggs</div>
-                        </a>
-                    </div>
+                <div class="col-md-4">
+                    <i class="bi bi-patch-check feature-icon"></i>
+                    <h3 class="mt-3 fs-5 fw-bold">100% Satisfaction</h3>
+                    <p class="text-muted">Not happy? We'll make it right. That's our promise to you.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="py-5">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-title">Our Bestsellers</h2>
-                    <p class="section-subtitle">Customers love these products. Check them out!</p>
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Shop by Category</h2>
+                <p class="section-subtitle">Find what you need with our popular categories.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <a href="#" class="category-card">
+                        <img src="/static/assets/vegtables.jpg" class="card-img" alt="Vegetables">
+                        <div class="category-card-title">Vegetables</div>
+                    </a>
                 </div>
-                <div class="row g-4">
-                    <div class="col-md-6 col-lg-3">
-                        <div class="card product-card h-100">
-                            <img src="https://i.pinimg.com/originals/d7/ba/a2/d7baa208d14fee0d098408968e00d623.png" class="card-img-top product-img" alt="Fresh Strawberries">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="product-title">Fresh Strawberries</h5>
-                                <p class="card-text text-muted small">per punnet</p>
-                                <div class="mt-auto d-flex justify-content-between align-items-center">
-                                    <p class="product-price mb-0">₦2,500</p>
-                                    <a href="{% url 'shop' %}" class="btn btn-sm btn-add-to-cart"><i class="bi bi-cart-plus"></i> Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="card product-card h-100">
-                            <img src="https://actoresproductivos.com/wp-content/uploads/2021/02/4106820_n_vir3.jpg" class="card-img-top product-img" alt="Ripe Avocados" height="300px">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="product-title">Ripe Avocados</h5>
-                                <p class="card-text text-muted small">per piece</p>
-                                <div class="mt-auto d-flex justify-content-between align-items-center">
-                                    <p class="product-price mb-0">₦800</p>
-                                    <a href="{% url 'shop' %}" class="btn btn-sm btn-add-to-cart"><i class="bi bi-cart-plus"></i> Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="card product-card h-100">
-                            <img src="https://th.bing.com/th/id/OIP.M3mTKonUu5ir2iE1Eq_VvQHaE7?w=248&h=180&c=7&r=0&o=7&cb=12&pid=1.7&rm=3" class="card-img-top product-img" alt="Sourdough Bread" height="300px">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="product-title">Artisan Sourdough Bread</h5>
-                                <p class="card-text text-muted small">per loaf</p>
-                                <div class="mt-auto d-flex justify-content-between align-items-center">
-                                    <p class="product-price mb-0">₦2,000</p>
-                                    <a href="{% url 'shop' %}" class="btn btn-sm btn-add-to-cart"><i class="bi bi-cart-plus"></i> Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="card product-card h-100">
-                            <img src="https://th.bing.com/th/id/R.15c607e33279d9063e151586a34ce786?rik=Pj%2bqPAvPJZgfxA&pid=ImgRaw&r=0" class="card-img-top product-img" alt="Farm Fresh Eggs" height="300px">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="product-title">Farm Fresh Eggs</h5>
-                                <p class="card-text text-muted small">dozen</p>
-                                <div class="mt-auto d-flex justify-content-between align-items-center">
-                                    <p class="product-price mb-0">₦1,800</p>
-                                    <a href="{% url 'shop' %}" class="btn btn-sm btn-add-to-cart"><i class="bi bi-cart-plus"></i> Shop Now</a>
-                                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="#" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=80&w=1974&auto=format&fit=crop"
+                            class="card-img" alt="Fruits">
+                        <div class="category-card-title">Fruits</div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="#" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1685531309627-f0c9e8656ff9?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+                            class="card-img" alt="Dairy & Eggs">
+                        <div class="category-card-title">Dairy & Eggs</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Our Bestsellers</h2>
+                <p class="section-subtitle">Customers love these products. Check them out!</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card product-card h-100">
+                        <img src="https://i.pinimg.com/originals/d7/ba/a2/d7baa208d14fee0d098408968e00d623.png"
+                            class="card-img-top product-img" alt="Fresh Strawberries">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="product-title">Fresh Strawberries</h5>
+                            <p class="card-text text-muted small">per punnet</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <p class="product-price mb-0">₦2,500</p>
+                                <a href="{% url 'shop' %}" class="btn btn-sm btn-add-to-cart"><i
+                                        class="bi bi-cart-plus"></i> Shop Now</a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section class="py-5 bg-light how-it-works">
-            <div class="container text-center">
-                <div class="text-center">
-                    <h2 class="section-title">How It Works</h2>
-                    <p class="section-subtitle">Get your groceries in 3 simple steps.</p>
-                </div>
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="step-icon"><i class="bi bi-mouse"></i></div>
-                        <h3 class="fs-5 fw-bold">1. Browse & Select</h3>
-                        <p class="text-muted">Choose from our wide range of fresh products online.</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="step-icon"><i class="bi bi-credit-card"></i></div>
-                        <h3 class="fs-5 fw-bold">2. Secure Checkout</h3>
-                        <p class="text-muted">Pay securely with your card or other payment methods.</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="step-icon"><i class="bi bi-box-seam"></i></div>
-                        <h3 class="fs-5 fw-bold">3. Fast Delivery</h3>
-                        <p class="text-muted">We'll deliver your order to your doorstep in no time.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-                    
-                    {% if messages %}
-                <div class="container mb-4">
-                    {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
-                            {{ message }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        <section class="py-5 newsletter-section">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-8 text-center">
-                        <h2 class="section-title">Join Our Newsletter</h2>
-                        <p class="section-subtitle">Get updates on new arrivals and special offers!</p>
-                         <form method="POST" action="{% url 'subscribe' %}" id="newsletterForm" >
-                            {% csrf_token %}
-
-                            <div class="input-group">
-                                <input
-                                    type="email"
-                                    class="form-control"
-                                    name="email"
-                                    placeholder="Enter your email"
-                                    required>
-
-                                <button class="btn btn-success" type="submit">
-                                    Subscribe
-                                </button>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card product-card h-100">
+                        <img src="https://actoresproductivos.com/wp-content/uploads/2021/02/4106820_n_vir3.jpg"
+                            class="card-img-top product-img" alt="Ripe Avocados" height="300px">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="product-title">Ripe Avocados</h5>
+                            <p class="card-text text-muted small">per piece</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <p class="product-price mb-0">₦800</p>
+                                <a href="{% url 'shop' %}" class="btn btn-sm btn-add-to-cart"><i
+                                        class="bi bi-cart-plus"></i> Shop Now</a>
                             </div>
-                      </form>
-                      
-                        <script>
-                            const form = document.getElementById("newsletterForm");
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card product-card h-100">
+                        <img src="https://th.bing.com/th/id/OIP.M3mTKonUu5ir2iE1Eq_VvQHaE7?w=248&h=180&c=7&r=0&o=7&cb=12&pid=1.7&rm=3"
+                            class="card-img-top product-img" alt="Sourdough Bread" height="300px">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="product-title">Artisan Sourdough Bread</h5>
+                            <p class="card-text text-muted small">per loaf</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <p class="product-price mb-0">₦2,000</p>
+                                <a href="{% url 'shop' %}" class="btn btn-sm btn-add-to-cart"><i
+                                        class="bi bi-cart-plus"></i> Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card product-card h-100">
+                        <img src="https://th.bing.com/th/id/R.15c607e33279d9063e151586a34ce786?rik=Pj%2bqPAvPJZgfxA&pid=ImgRaw&r=0"
+                            class="card-img-top product-img" alt="Farm Fresh Eggs" height="300px">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="product-title">Farm Fresh Eggs</h5>
+                            <p class="card-text text-muted small">dozen</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <p class="product-price mb-0">₦1,800</p>
+                                <a href="{% url 'shop' %}" class="btn btn-sm btn-add-to-cart"><i
+                                        class="bi bi-cart-plus"></i> Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                            form.addEventListener("submit", function(e) {
-                                e.preventDefault();
+    <section class="py-5 bg-light how-it-works">
+        <div class="container text-center">
+            <div class="text-center">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">Get your groceries in 3 simple steps.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="step-icon"><i class="bi bi-mouse"></i></div>
+                    <h3 class="fs-5 fw-bold">1. Browse & Select</h3>
+                    <p class="text-muted">Choose from our wide range of fresh products online.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="step-icon"><i class="bi bi-credit-card"></i></div>
+                    <h3 class="fs-5 fw-bold">2. Secure Checkout</h3>
+                    <p class="text-muted">Pay securely with your card or other payment methods.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="step-icon"><i class="bi bi-box-seam"></i></div>
+                    <h3 class="fs-5 fw-bold">3. Fast Delivery</h3>
+                    <p class="text-muted">We'll deliver your order to your doorstep in no time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                                fetch("{% url 'subscribe' %}", {
-                                    method: "POST",
-                                    body: new FormData(form),
-                                    headers: {
-                                        "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value
-                                    }
-                                })
+    {% if messages %}
+    <div class="container mb-4">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <section class="py-5 newsletter-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h2 class="section-title">Join Our Newsletter</h2>
+                    <p class="section-subtitle">Get updates on new arrivals and special offers!</p>
+                    <form method="POST" action="{% url 'subscribe' %}" id="newsletterForm">
+                        {% csrf_token %}
+
+                        <div class="input-group">
+                            <input type="email" class="form-control" name="email" placeholder="Enter your email"
+                                required>
+
+                            <button class="btn btn-success" type="submit">
+                                Subscribe
+                            </button>
+                        </div>
+                    </form>
+
+                    <script>
+                        const form = document.getElementById("newsletterForm");
+
+                        form.addEventListener("submit", function (e) {
+                            e.preventDefault();
+
+                            fetch("{% url 'subscribe' %}", {
+                                method: "POST",
+                                body: new FormData(form),
+                                headers: {
+                                    "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value
+                                }
+                            })
                                 .then(response => response.json())
                                 .then(data => {
 
@@ -212,13 +219,13 @@
                                     }
 
                                 });
-                            });
-                        </script>
-                    </div>
+                        });
+                    </script>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
+</main>
 
 {% endblock %}
